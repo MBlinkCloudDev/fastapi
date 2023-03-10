@@ -7,7 +7,9 @@ app = FastAPI()
 
 @app.get("/")
 def read_root():
-    return {"Hello": "World"}
+    #return {"Hello": "World"}
+    url = 'https://api.chucknorris.io/jokes/random'
+    return requests.get(url).json()['value']
 
 
 @app.get("/items/{item_id}")
