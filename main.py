@@ -1,13 +1,10 @@
 from typing import Union
-
-from fastapi import FastAPI
-
-app = FastAPI()
-
+import fastapi
+import requests
+app = fastapi.FastAPI()
 
 @app.get("/")
 def read_root():
-    #return {"Hello": "World"}
     url = 'https://api.chucknorris.io/jokes/random'
     return requests.get(url).json()['value']
 
@@ -18,3 +15,5 @@ def hello_post():
 @app.get("/items/{item_id}")
 def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
+
+
